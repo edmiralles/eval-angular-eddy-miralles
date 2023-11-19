@@ -1,0 +1,58 @@
+<section class="container centerY content-container">
+    <span>Ajouter un Bien</span>
+    <div class="row custom-border bgBrown mb-5">
+        <div class="col-md-6 custom-border bgBlueIce">
+            <div class="row">
+                <div class="col-md-4">
+                    <img [src]="newLogement.picture" alt="" width="150">
+                </div>
+                <div class="col-md-4 mb-2" *ngFor="let image of newLogement.additionalImages; let i = index">
+                    <img [src]="image" alt="" width="150" *ngIf="image">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 custom-border bgBlueIce">
+            <div class="col-md-8 mx-auto">
+                <div class="mt-2">
+                    <label for="">Description</label>
+                    <input type="text" class="form-control" placeholder="Description" [(ngModel)]="newLogement.name" required>
+                </div>
+                <div class="mt-2">
+                    <label for="">Ville</label>
+                    <input type="text" class="form-control" placeholder="Localisation"
+                        [(ngModel)]="newLogement.localisation" required>
+                </div>
+                <div class="mt-2">
+                    <label for="">Prix par nuit</label>
+                    <input type="number" class="form-control" placeholder="prix par personne à la nuit"
+                        [(ngModel)]="newLogement.price" required>
+                </div>
+                <div class="mt-2">
+                    <label for="">Image principale</label>
+                    <input type="text" class="form-control" placeholder="Photo du logement"
+                        [(ngModel)]="newLogement.picture" required>
+                </div>
+                <div class="mt-2">
+                    <div class="mt-2">
+                        <label for="">Images supplémentaires (max 6)</label>
+                        <div class="row">
+                            <div class="col-md-2 mx-auto">
+                                <input type="text" class="form-control" placeholder="add"
+                                    [(ngModel)]="newLogement.additionalImages[0]">
+                            </div>
+                            <div class="col-md-2 mx-auto" *ngFor="let image of allBiens.slice(1); let i = index">
+                                <input type="text" class="form-control" placeholder="add Picture"
+                                    [(ngModel)]="newLogement.additionalImages[i + 1]"
+                                    [disabled]="!newLogement.additionalImages[i] || !newLogement.additionalImages[i].trim()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-primary mt-2 btn-block" (click)="addLogement()">Valider</button>
+                    <button type="button" class="btn btn-info mx-3 mt-2 " routerLink="">Retour</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

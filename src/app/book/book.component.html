@@ -1,0 +1,41 @@
+<div class="container content-container">
+  <div class="row">
+    <div class="col-md-6">
+      <img [src]="logementSelected.picture" alt="" width="500" class="img-fluid">
+      <p class="mx-5 mt-2">{{logementSelected.name}}</p>
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+      <div class="form-group">
+        <label for="startDatePicker">Choisissez la date de début :</label>
+        <input type="date" class="form-control" id="startDatePicker" [(ngModel)]="dateStart"
+          (change)="onSelectionDate()" [min]="dateToday">
+        <label for="endDatePicker">Choisissez la date de fin :</label>
+        <input type="date" class="form-control" id="endDatePicker" [(ngModel)]="dateEnd" (change)="onSelectionDate()"
+          [min]="dateStart" [disabled]="!dateStart">
+        <div *ngIf="dateEnd">
+          <p>Votre séjour se déroulera du <br>{{dateStart}} au {{dateEnd}}!</p>
+          <p>Total de jours : {{quantity}}.</p>
+          <p>prix total : {{ calculatePrice() }} €</p>
+        </div>
+        <button type="button" class="btn btn-primary mt-3 " data-bs-toggle="modal" data-bs-target="#bookmodale"
+          [disabled]="!dateEnd">Réserver</button>
+        <button type="button" class="btn btn-info mx-3 mt-3 " routerLink="">Retour</button>
+      </div>
+    </div>
+  </div>
+  <div id="bookmodale" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Le prix total est de {{ calculatePrice() }} €</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <p>voulez vous valider cette réservation?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+            (click)="updateLogement()">Valider</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>

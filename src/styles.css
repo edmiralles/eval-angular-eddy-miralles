@@ -1,0 +1,66 @@
+:root {
+    --header-height: 65px;
+    --footer-height: 41px;
+}
+
+.content-container {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    position: relative;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bgIcon {
+    background-color: #F7575D;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.taille {
+    height: 60% !important;
+}
+
+.myCard {
+    border: solid 1px #cccccc8e;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    align-items: center !important;
+    padding: 10px !important;
+    background-color: rgba(240, 255, 255, 0.196) !important;
+}
+
+.myCard:hover {
+    transform: scale(1.02);
+    background-color: rgba(169, 234, 254, 0.087) !important;
+}
+
+.spaced-card {
+    margin-right: 10px;
+}
+
+.custom-card-width {
+    max-width: calc(50% - 10px) !important;
+}
+
+.reserved-overlay {
+    background-color: rgba(169, 169, 169, 0.5) !important;
+}
+.reserved-overlay:hover {
+    transform: scale(1.02);
+    background-color: rgba(169, 169, 169, 0.87) !important;
+}
+
+.adm-text {
+    font-weight: 1500;
+    color: #F7575D;
+    margin: 0;
+}

@@ -1,0 +1,23 @@
+<main class="container content-container">
+    <h1 class="text-center mt-2 mb-2"><i class="fa-brands fa-airbnb bgIcon fa-2x" style="color: #ffffff;"></i></h1>
+    <h2 class="text-center"> <strong>{{allBiens.length}} logements disponibles</strong> </h2>
+    <div class="col-md-5 mx-auto mt-2">
+        <input type="text" placeholder="Rechercher" class="form-control" #event (keyup)="searchFilter(event.value)">
+    </div>
+    <section class="row mx-auto d-flex align-items-stretch">
+        <div class="col-md-6 mt-2 p-2 d-flex justify-content-center mx-auto myCard spaced-card custom-card-width"
+            *ngFor="let allBien of allBiens" data-bs-toggle="modal" data-bs-target="#clientModal"
+            [ngClass]="{'reserved-overlay': allBien.reserved,'unreserved-card': !allBien.reserved}"
+            (click)="viewModel(allBien)">
+            <figure class="d-flex flex-column h-100 justify-content-center ">
+                <img [src]=allBien.picture alt="" class="img-fluid taille">
+                <figcaption class="d-flex flex-column text-center mr-2 mt-2"
+                    [ngClass]="{ 'text-danger': allBien.reserved }">{{allBien.name}}<br>Lieu : {{allBien.localisation}}
+                </figcaption>
+                <span *ngIf="allBien.reserved" class="fw-bold text-danger text-center adm-text">NON DISPONIBLE</span>
+            </figure>
+        </div>
+    </section>
+
+</main>
+<app-modal [logementSelected]="logementSelected"></app-modal>

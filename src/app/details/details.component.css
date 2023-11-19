@@ -1,0 +1,20 @@
+* {
+  padding: 5px;
+}
+
+.selected-image {
+  width: 100%;
+  height: auto;
+  border: 2px solid #000;
+}
+
+img {
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+}
+
+.additional-images img {
+  display: inline-block;
+  margin-right: 10px;
+}

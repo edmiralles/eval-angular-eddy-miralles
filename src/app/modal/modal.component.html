@@ -1,0 +1,26 @@
+<div id="clientModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{logementSelected.name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-right">
+        <img [src]=logementSelected.picture class="img-fluid" alt={{logementSelected.name}}>
+      </div>
+      <section>
+        <ul class="list-unstyled">
+          <li>Lieu : {{logementSelected.localisation}}</li>
+          <li>Prix par nuit : {{logementSelected.price}}</li>
+        </ul>
+      </section>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voir autre</button>
+        <button type="button" *ngIf="!logementSelected.reserved" class="btn btn-primary" data-bs-dismiss="modal"
+          [routerLink]="['/book',logementSelected.id]">réserver</button>
+        <button type="button" class="btn btn-info" data-bs-dismiss="modal"
+          [routerLink]="['/details',logementSelected.id]">Plus de détails</button>
+      </div>
+    </div>
+  </div>
+</div>

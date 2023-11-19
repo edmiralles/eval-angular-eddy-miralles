@@ -1,0 +1,26 @@
+<div class="container content-container content-container">
+  <div class="row align-items-start d-flex justify-content-center">
+
+    <div class="col-md-6">
+      <h2>{{ logementSelected.name }}</h2>
+      <img [src]="logementSelected.picture" alt="{{ logementSelected.name }}"
+        [class.selected-image]="selectedImageIndex === null" (click)="toggleImage(null)">
+
+      <h3>Autres photos:</h3>
+      <div class="additional-images d-flex flex-wrap">
+        <img *ngFor="let additionalImage of logementSelected.additionalImages; let i = index" [src]="additionalImage"
+          alt="{{ logementSelected.name }} Additional Image" [class.selected-image]="selectedImageIndex === i"
+          (click)="toggleImage(i)">
+      </div>
+    </div>
+
+    <div class="col-md-6 text-center details-section">
+      <h3 class="align-self-start mb-5 pb-5">Détails:</h3>
+      <ul class="list-unstyled align-self-center p-5">
+        <li class="m-3">Lieu : {{logementSelected.localisation}}</li>
+        <li class="m-3">Prix par nuit : {{logementSelected.price}} €</li>
+        <li class="m-3 fw-bold text-danger" *ngIf="logementSelected.reserved">Non disponible</li>
+        <li class="m-3 fw-bold text-success" *ngIf="!logementSelected.reserved">Disponible</li>
+      </ul>
+      <button type="button" class="btn btn-info mt-5 btn-block btn-lg" routerLink="">retour</button>
+    </div>

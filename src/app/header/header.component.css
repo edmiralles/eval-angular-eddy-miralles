@@ -1,0 +1,12 @@
+nav {
+    background-color: #F7575D !important;
+}
+
+a {
+    color: #fff !important;
+}
+
+.navbar-nav a:active {
+    background-color: #fff;
+    color: #F7575D !important;
+}

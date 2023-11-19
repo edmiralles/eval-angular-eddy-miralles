@@ -1,0 +1,53 @@
+<main class="container content-container">
+  <div class="fixed-container bgBlueIce p-4 rounded">
+    <p class="fw-bold adm-text">Mode Administrateur</p>
+  </div>
+  <h1 class="text-center mt-2 mb-2"><i class="fa-brands fa-airbnb bgIcon fa-2x" style="color: #ffffff;"></i></h1>
+  <h2 class="text-center"> <strong>{{allBiens.length}} logements disponibles</strong> </h2>
+  <div class="col-md-5 mx-auto mt-2">
+    <input type="text" placeholder="Rechercher" class="form-control" #event (keyup)="searchFilter(event.value)">
+  </div>
+  <section class="row mx-auto d-flex align-items-stretch">
+    <div class="col-md-6 mt-2 p-2 d-flex justify-content-center mx-auto myCard spaced-card custom-card-width "
+      *ngFor="let allBien of allBiens" data-bs-toggle="modal" data-bs-target="#admModal"
+      [ngClass]="{'reserved-overlay': allBien.reserved,'unreserved-card': !allBien.reserved}"
+      (click)="viewModel(allBien)">
+      <figure class="d-flex flex-column h-100 justify-content-center">
+        <img [src]=allBien.picture alt="" class="img-fluid taille">
+        <figcaption class="d-flex flex-column text-center mr-2 mt-2" [ngClass]="{ 'text-danger': allBien.reserved }">
+          {{allBien.name}}<br>Lieu : {{allBien.localisation}}</figcaption>
+        <span *ngIf="allBien.reserved" class="fw-bold text-danger text-center adm-text">NON DISPONIBLE</span>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<div id="admModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{logementSelected.name}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-right">
+        <img [src]=logementSelected.picture class="img-fluid" alt={{logementSelected.name}}>
+      </div>
+      <section>
+        <ul class="list-unstyled">
+          <li>Lieu : {{logementSelected.localisation}}</li>
+          <li>Prix par nuit par personne : {{logementSelected.price}}</li>
+          <li>Numéro de dossier: {{logementSelected.id}}</li>
+        </ul>
+      </section>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voir autre</button>
+        <button type="button" class="btn btn-primary" (click)="deleteProperty()"
+          data-bs-dismiss="modal">Supprimer</button>
+        <button type="button" class="btn btn-info" data-bs-dismiss="modal"
+          [routerLink]="['/edit',logementSelected.id]">Modifier</button>
+        <button *ngIf="logementSelected.reserved" type="button" class="btn btn-dark" (click)="cancelBooking()"
+          data-bs-dismiss="modal">Annuler la réservation</button>
+      </div>
+    </div>
+  </div>
+</div>
